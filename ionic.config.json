@@ -1,0 +1,7 @@
+{
+  "name": "gestoremesas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
