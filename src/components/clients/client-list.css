@@ -1,0 +1,10 @@
+ion-item {
+  --border-radius: 20px;
+  --detail-icon-color: #1780cb;
+  --detail-icon-opacity: 1;
+  --detail-icon-font-size: 35px;
+}
+
+.ocasiones {
+  border-radius: 20px;
+}
