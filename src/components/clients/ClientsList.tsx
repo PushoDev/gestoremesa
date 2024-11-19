@@ -83,10 +83,8 @@ const ClientsList = ({ datos = [] }) => {
             </IonItem>
             {/* Ver Detalles */}
             <IonItemOptions id="open-modal" side="start">
-              <IonItemOption>
-                <IonButton id="open-modal" expand="block" color="primary">
-                  <IonIcon slot="icon-only" icon={eyeSharp}></IonIcon>
-                </IonButton>
+              <IonItemOption id="open-modal">
+                <IonIcon slot="icon-only" icon={eyeSharp}></IonIcon>
               </IonItemOption>
             </IonItemOptions>
             {/* Delete Cliente */}
@@ -110,47 +108,10 @@ const ClientsList = ({ datos = [] }) => {
           <IonToolbar>
             <IonTitle>Modal</IonTitle>
             <IonButtons slot="end">
-              <IonButton onClick={() => dismiss()}>Close</IonButton>
+              <IonButton onClick={() => dismiss()}>Aceptar</IonButton>
             </IonButtons>
           </IonToolbar>
-          <IonList>
-            <IonItem>
-              <IonAvatar slot="start">
-                <IonImg src="https://i.pravatar.cc/300?u=b" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Connor Smith</h2>
-                <p>Sales Rep</p>
-              </IonLabel>
-            </IonItem>
-            <IonItem>
-              <IonAvatar slot="start">
-                <IonImg src="https://i.pravatar.cc/300?u=a" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Daniel Smith</h2>
-                <p>Product Designer</p>
-              </IonLabel>
-            </IonItem>
-            <IonItem>
-              <IonAvatar slot="start">
-                <IonImg src="https://i.pravatar.cc/300?u=d" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Greg Smith</h2>
-                <p>Director of Operations</p>
-              </IonLabel>
-            </IonItem>
-            <IonItem>
-              <IonAvatar slot="start">
-                <IonImg src="https://i.pravatar.cc/300?u=e" />
-              </IonAvatar>
-              <IonLabel>
-                <h2>Zoey Smith</h2>
-                <p>CEO</p>
-              </IonLabel>
-            </IonItem>
-          </IonList>
+          <IonList>{/* Detalles del Cliente Seleccionado */}</IonList>
         </IonContent>
       </IonModal>
     </>
