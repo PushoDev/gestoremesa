@@ -13,15 +13,17 @@ const CardHome = () => {
   return (
     <>
       <div className="ion-padding">
-        <h1>CardHome</h1>
+        <h1 className="text-2xl font-bold">Pantalla Operaciones</h1>
       </div>
-      <IonCard className="animate__animated animate__fadeInUp">
+      <IonCard className="animate__animated animate__fadeInUp bg-gradient-to-r from-slate-500 to-stone-700 rounded-lg">
         <IonCardHeader>
           <IonCardTitle>Card Title</IonCardTitle>
-          <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+          <IonCardSubtitle className="text-blue-400">
+            Card Subtitle
+          </IonCardSubtitle>
         </IonCardHeader>
 
-        <IonCardContent>
+        <IonCardContent className="text-red-600">
           Here's a small text description for the card content. Nothing more,
           nothing less.
         </IonCardContent>
