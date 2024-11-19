@@ -1,6 +1,16 @@
 /* Estilos Generales y Estructurales de la App */
 
 /** Ionic CSS Variables **/
+* {
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: 'calt'on;
+    font-feature-settings: 'calt'on;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+    -webkit-text-size-adjust: 100%;
+}
+
 :root {
   /** primary **/
   --ion-color-primary: #3880ff;
@@ -73,4 +83,8 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** Animaciones Globales **/
+  --animate-duration: 800ms;
+  --animate-delay: 0.9s;  
 }
