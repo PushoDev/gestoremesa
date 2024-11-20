@@ -3,11 +3,15 @@ import {
   IonHeader,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  IonButtons,
+  IonButton,
+  IonIcon
 } from "@ionic/react";
 import "./Tab1.css";
 import "animate.css";
-import CardHome from "../components/home/CardHome";
+import AddClients from "../components/home/AddClients";
+import { personAdd } from "ionicons/icons";
 
 const Tab1: React.FC = () => {
   return (
@@ -15,12 +19,19 @@ const Tab1: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Operaciones</IonTitle>
+          <IonButtons slot="end">
+            <IonButton>
+              <IonIcon slot="start" icon={personAdd}></IonIcon>
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <div className="ion-padding">
-          <CardHome />
+        <div>
+          <AddClients />
         </div>
+        <br />
+        <br />
       </IonContent>
     </IonPage>
   );

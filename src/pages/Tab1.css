@@ -1,4 +1,10 @@
 /* Contenedor de la Pag. Operaciones */
+ion-toolbar {
+  --background:#022c22;
+}
+ion-content {
+  --background: #059669;
+}
 .container {
   text-align: center;
   position: absolute;
