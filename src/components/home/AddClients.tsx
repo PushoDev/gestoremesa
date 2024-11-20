@@ -6,13 +6,17 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonCol,
+  IonGrid,
   IonIcon,
   IonInput,
   IonItem,
+  IonRow,
   IonSelect,
   IonSelectOption,
   IonText
 } from "@ionic/react";
+import { warning } from "ionicons/icons";
 
 const AddClients = () => {
   // Estado para almacenar los valores ingresados por el usuario
@@ -66,6 +70,14 @@ const AddClients = () => {
     } catch (error) {
       console.error("Error al crear filas:", error);
     }
+  };
+
+  // Formato de la tarjeta de credito del familiar que recive
+  const formatTarjeta = (tarjeta: string): string => {
+    const tarjetaFormateada = tarjeta
+      .replace(/\D/g, "")
+      .replace(/(\{4})/g, "$1-");
+    return tarjetaFormateada;
   };
 
   return (
@@ -158,65 +170,109 @@ const AddClients = () => {
               <div slot="label">
                 <IonText color={"success"}>Tipo de Transacción</IonText>
               </div>
-              <IonSelectOption>Efectivo</IonSelectOption>
-              <IonSelectOption>Transferencia</IonSelectOption>
+              <IonSelectOption value="efectivo">Efectivo</IonSelectOption>
+              <IonSelectOption value="transferencia">
+                Transferencia
+              </IonSelectOption>
             </IonSelect>
           </IonItem>
           <br />
-          {/* En caso de Escoger */}
           {/* Opción Efectivo */}
-          <IonItem>
-            <IonSelect
-              value={moneda}
-              onIonChange={(e) => setMoneda(e.detail.value!)}
-            >
-              <div color="warning">
-                <IonText>Tipo de Moneda</IonText>
-              </div>
-              <IonSelectOption>USD</IonSelectOption>
-              <IonSelectOption>CUP</IonSelectOption>
-            </IonSelect>
-          </IonItem>
-          <br />
-          {/* Monto que Recive */}
-          <IonInput
-            labelPlacement="floating"
-            label="Cantidad que Recive"
-            placeholder="Monto que Recive"
-            value={cantidadRecive}
-            onIonChange={(e) => setCantidadRecive(e.detail.value!)}
-          ></IonInput>
-          {/* Opción Transferencia */}
-          <IonItem>
-            <IonSelect
-              value={moneda}
-              onIonChange={(e) => setMoneda(e.detail.value!)}
-            >
-              <div color="warning">
-                <IonText>Tipo de Moneda</IonText>
-              </div>
-              <IonSelectOption>CUP</IonSelectOption>
-              <IonSelectOption>MLC</IonSelectOption>
-            </IonSelect>
-          </IonItem>
-          <br />
-          {/* Número de Tarjeta */}
-          <IonInput
-            labelPlacement="floating"
-            label="Número de Tarjeta"
-            placeholder="Ingrese Número de Tarjeta"
-            value={tarjetaFamiliar}
-            onIonChange={(e) => setTarjetaFamiliar(e.detail.value!)}
-          ></IonInput>
-          <br />
-          {/* Monto que Recive */}
-          <IonInput
-            labelPlacement="floating"
-            label="Cantidad que Recive"
-            placeholder="Monto que Recive"
-            value={cantidadRecive}
-            onIonChange={(e) => setCantidadRecive(e.detail.value!)}
-          ></IonInput>
+          {transaccion === "efectivo" ? (
+            <>
+              <IonGrid>
+                <IonRow>
+                  <IonCol size="5">
+                    {/* Tipo de Moneda USD - CUP */}
+                    <IonItem>
+                      <IonSelect
+                        value={moneda}
+                        onIonChange={(e) => setMoneda(e.detail.value!)}
+                      >
+                        <div>
+                          <IonText slot="label" color={warning}>
+                            Tipo de Moneda
+                          </IonText>
+                        </div>
+                        <IonSelectOption value="usd">USD</IonSelectOption>
+                        <IonSelectOption value="cup">CUP</IonSelectOption>
+                      </IonSelect>
+                    </IonItem>
+                  </IonCol>
+                  <IonCol size="7">
+                    {/* Monto que Recive */}
+                    <IonInput
+                      labelPlacement="floating"
+                      label="Cantidad que Recive"
+                      placeholder="Monto que Recive"
+                      value={cantidadRecive}
+                      onIonChange={(e) => setCantidadRecive(e.detail.value!)}
+                    ></IonInput>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
+
+              <br />
+            </>
+          ) : transaccion === "transferencia" ? (
+            <>
+              {/* Opción Transferencia */}
+
+              <IonGrid>
+                <IonRow>
+                  <IonCol size="5">
+                    {/* Tipo de Moneda */}
+                    <IonItem>
+                      <IonSelect
+                        value={moneda}
+                        onIonChange={(e) => setMoneda(e.detail.value!)}
+                      >
+                        <div>
+                          <IonText slot="label">Tipo de Moneda</IonText>
+                        </div>
+                        <IonSelectOption value="cup">CUP</IonSelectOption>
+                        <IonSelectOption value="mlc">MLC</IonSelectOption>
+                      </IonSelect>
+                    </IonItem>
+                  </IonCol>
+                  <IonCol size="7">
+                    {/* Monto que Recive */}
+                    <IonInput
+                      labelPlacement="floating"
+                      label="Cantidad que Recive"
+                      placeholder="Monto que Recive"
+                      value={cantidadRecive}
+                      onIonChange={(e) => setCantidadRecive(e.detail.value!)}
+                    ></IonInput>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
+              <br />
+              {/* Número de Tarjeta */}
+              <IonGrid>
+                <IonRow>
+                  <IonCol size="8">
+                    <IonInput
+                      label="Número de Tarjeta"
+                      color="success"
+                      labelPlacement="floating"
+                      placeholder="ingrese Número de Tarjeta"
+                      value={formatTarjeta(tarjetaFamiliar)}
+                      onIonInput={(e) =>
+                        setTarjetaFamiliar(
+                          formatTarjeta(e.target.value as string)
+                        )
+                      }
+                    />
+                  </IonCol>
+                  <IonCol size="4">
+                    <p>IMG</p>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
+              <br />
+            </>
+          ) : null}
           <br />
           <hr />
           <br />
@@ -242,6 +298,7 @@ const AddClients = () => {
           <br />
         </IonCardContent>
 
+        {/* Botones */}
         <IonButton fill="clear" color={"success"} onClick={handleSubmit}>
           Agregar
         </IonButton>
