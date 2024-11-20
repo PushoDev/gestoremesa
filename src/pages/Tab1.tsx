@@ -31,7 +31,6 @@ const Tab1: React.FC = () => {
           <AddClients />
         </div>
         <br />
-        <br />
       </IonContent>
     </IonPage>
   );

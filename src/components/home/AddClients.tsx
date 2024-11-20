@@ -15,6 +15,44 @@ import {
 } from "@ionic/react";
 
 const AddClients = () => {
+  // Conectar Api Rest
+  fetch("https://sheetdb.io/api/v1/jom1wk8v9e84y", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      data: [
+        {
+          id: "INCREMENT",
+          name_client: "Willian Guisado",
+          cell_client: "55572430",
+          envia_client: "$100,00",
+          name_familiar: "Laritza Cuñada",
+          cell_familiar: "56142247",
+          address_familiar: "Veguitas, Yara",
+          transaccion: "Efectivo",
+          moneda: "CUP",
+          card: "",
+          recive_familiar: "$32.000,00",
+          name_mensajero: "Luis Albero Guisado",
+          cell_mensajero: "50124578"
+        }
+      ]
+    })
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+
+  // Formato de la Tarjeta
+  const formatTarjeta = (tarjeta: string): string => {
+    const tarjetaFormateada = tarjeta
+      .replace(/\D/g, "")
+      .replace(/(\d{4})/g, "$1-");
+    return tarjetaFormateada;
+  };
+
   return (
     <>
       <IonCard className="animate__animated animate__fadeInUp bg-gradient-to-r from-slate-900 to-slate-700">
