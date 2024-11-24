@@ -90,38 +90,40 @@ const AddClients = () => {
 
         <IonCardContent className="text-red-600">
           {/* Contenido del Formulario */}
-          {/* Nombre del Cliente que Envía */}
-          <IonInput
-            label="Nombre y Apellidos"
-            labelPlacement="floating"
-            placeholder="Credenciales de quien Envía"
-            value={nombreEnvia}
-            onIonChange={(e) => setNombreEnvia(e.detail.value!)}
-          >
-            {/* <IonIcon></IonIcon> */}
-          </IonInput>
-          <br />
-          {/* Telefono del Cliente */}
-          <IonInput
-            label="Número de Teléfono"
-            labelPlacement="floating"
-            placeholder="Teléfono de Quien Envía"
-            value={telefonoEnvia}
-            onIonChange={(e) => setTelefonoEnvia(e.detail.value!)}
-          >
-            {/* <IonIcon></IonIcon> */}
-          </IonInput>
-          <br />
-          {/* Cantidad que Envía */}
-          <IonInput
-            label="Cantidad que Envía"
-            labelPlacement="floating"
-            placeholder="Cantidad que Envía"
-            value={cantidadEnvia}
-            onIonChange={(e) => setCantidadEnvia(e.detail.value!)}
-          >
-            {/* <IonIcon></IonIcon> */}
-          </IonInput>
+          <div>
+            {/* Nombre del Cliente que Envía */}
+            <IonInput
+              label="Nombre y Apellidos"
+              labelPlacement="floating"
+              placeholder="Credenciales de quien Envía"
+              value={nombreEnvia}
+              onIonChange={(e) => setNombreEnvia(e.detail.value!)}
+            >
+              {/* <IonIcon></IonIcon> */}
+            </IonInput>
+            <br />
+            {/* Telefono del Cliente */}
+            <IonInput
+              label="Número de Teléfono"
+              labelPlacement="floating"
+              placeholder="Teléfono de Quien Envía"
+              value={telefonoEnvia}
+              onIonChange={(e) => setTelefonoEnvia(e.detail.value!)}
+            >
+              {/* <IonIcon></IonIcon> */}
+            </IonInput>
+            <br />
+            {/* Cantidad que Envía */}
+            <IonInput
+              label="Cantidad que Envía"
+              labelPlacement="floating"
+              placeholder="Cantidad que Envía"
+              value={cantidadEnvia}
+              onIonChange={(e) => setCantidadEnvia(e.detail.value!)}
+            >
+              {/* <IonIcon></IonIcon> */}
+            </IonInput>
+          </div>
           <br />
           <hr />
           <br />
@@ -251,7 +253,7 @@ const AddClients = () => {
               {/* Número de Tarjeta */}
               <IonGrid>
                 <IonRow>
-                  <IonCol size="8">
+                    <IonCol size="12">
                     <IonInput
                       label="Número de Tarjeta"
                       color="success"
@@ -265,9 +267,9 @@ const AddClients = () => {
                       }
                     />
                   </IonCol>
-                  <IonCol size="4">
+                    {/* <IonCol size="4">
                     <p>IMG</p>
-                  </IonCol>
+                  </IonCol> */}
                 </IonRow>
               </IonGrid>
               <br />
