@@ -13,7 +13,7 @@ import {
   IonTitle,
   IonButtons,
   IonButton,
-  IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle
+  IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle
 } from "@ionic/react";
 import { eyeSharp, person, trash, warning } from "ionicons/icons";
 import "./client-list.css";
@@ -23,6 +23,8 @@ const ClientsList = () => {
   const [isOpen, setIsOpen] = useState(false)
   // Interaccion con la APi Rest
   const [clientes, setClientes] = useState([]);
+  // Seleccionar Cliente
+  const [clienteSeleccionado, setClienteSeleccionado] = useState({})
 
   useEffect(() => {
     const obtenerClientes = async () => {
@@ -36,6 +38,8 @@ const ClientsList = () => {
     };
     obtenerClientes();
   }, []);
+  // Mostrar datos del cliente seleccionado
+
   // Vista para mostrar los clientes
   return (
     <>
@@ -65,7 +69,11 @@ const ClientsList = () => {
               {/* Ver Detalles */}
               <IonItemOptions side="start">
                 <IonItemOption color="primary"
-                  onClick={() => setIsOpen(true)}
+                  // onClick={() =>  setIsOpen(true)}
+                  onClick={() => {
+                    setClienteSeleccionado(cliente);
+                    setIsOpen(true);
+                  }}
                 >
                   <IonIcon slot="icon-only" icon={eyeSharp}></IonIcon>
                 </IonItemOption>
@@ -93,11 +101,28 @@ const ClientsList = () => {
             {/* Contenido */}
             <IonCard>
               <IonCardHeader>
-                <IonCardTitle>Card Title</IonCardTitle>
-                <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-              </IonCardHeader>
+                <IonCardSubtitle>Cliente que Envía</IonCardSubtitle>
+              </IonCardHeader>              
+              <IonCardContent>
+                <p><b>Nombre Cliente: </b> {clienteSeleccionado.name_client} </p><br />
+                <p><b>No Contacto: </b> {clienteSeleccionado.cell_client} </p><br />
+                <p><b>Cantidad Envía: </b>{clienteSeleccionado.envia_client} </p>
+                <br /><hr /><br />
+                <IonCardSubtitle>Datos del Familiar</IonCardSubtitle><br /><br />
+                <p><b>Nombre: </b> {clienteSeleccionado.name_familiar} </p><br />
+                <p><b>Contacto: </b> {clienteSeleccionado.cell_familiar} </p><br />
+                <p><b>Dirección: </b> {clienteSeleccionado.address_familiar} </p><br />
+                <p><b>Operación: </b> {clienteSeleccionado.transaccion} </p><br />
+                <p><b>Tipo de Moneda: </b> {clienteSeleccionado.moneda} </p><br />
+                {/* condicion */}
+                <p><b>No. Tarjeta: </b> {clienteSeleccionado.card} </p><br />
 
-              <IonCardContent>Here's a small text description for the card content. Nothing more, nothing less.</IonCardContent>
+                <p><b>Cantidad Recive: </b> {clienteSeleccionado.recive_familiar} </p><br />
+                <br /><hr /><br />
+                <IonCardSubtitle>Datos del Mensajero</IonCardSubtitle><br /><br />
+                <p><b>Nombre: </b> {clienteSeleccionado.name_mensajero} </p><br />
+                <p><b>Contacto: </b> {clienteSeleccionado.cell_mensajero} </p><br />
+              </IonCardContent>
             </IonCard>
           </IonContent>
         </IonModal>
