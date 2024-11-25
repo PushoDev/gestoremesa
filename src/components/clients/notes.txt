@@ -39,8 +39,7 @@ const AddClients = () => {
     event.preventDefault();
 
     try {
-      // Api Rest:https://sheetdb.io/api/v1/jom1wk8v9e84y 
-      const response = await fetch("https://sheetdb.io/api/v1/4dre2nqub01h2", {
+      const response = await fetch("https://sheetdb.io/api/v1/jom1wk8v9e84y", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -97,6 +96,9 @@ const AddClients = () => {
       .replace(/(\{4})/g, "\$1-");
     return tarjetaFormateada;
   };
+
+  // Refrescar App
+
 
   return (
     <>
@@ -334,7 +336,9 @@ const AddClients = () => {
         <IonButton fill="clear" color={"success"} id="present-alert" onClick={handleSubmit}>
           Agregar
         </IonButton>
-        <IonButton fill="clear" color={"danger"} onClick={resetForm}>
+        <IonButton fill="clear" color={"danger"} onClick={() => {
+          window.location.reload();
+        }}>
           Cancelar Operación
         </IonButton>
         {/* Alert Confirmations */}
@@ -343,7 +347,15 @@ const AddClients = () => {
           header="Perfecto"
           subHeader="Operación Realizada"
           message="El Cliente ha sido agregado Satisfactoriamente."
-          buttons={["Aceptar"]}
+          // Actualizar Apps
+          buttons={[
+            {
+              text: "Aceptar",
+              handler: () => {
+                window.location.reload();
+              }
+            }
+          ]}
         ></IonAlert>
       </IonCard>
     </>

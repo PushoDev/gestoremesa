@@ -28,7 +28,7 @@ const ClientsList = () => {
   useEffect(() => {
     const obtenerClientes = async () => {
       try {
-        const response = await fetch("https://sheetdb.io/api/v1/jom1wk8v9e84y");
+        const response = await fetch("https://sheetdb.io/api/v1/4dre2nqub01h2");
         const data = await response.json();
         setClientes(data);
         console.log(data);        
@@ -41,7 +41,7 @@ const ClientsList = () => {
   // Eliminar datos del cliente 
   const eliminarCliente = async (id: number) => {
     try {
-      const response = await fetch(`https://sheetdb.io/api/v1/jom1wk8v9e84y/id/${id}`, {
+      const response = await fetch(`https://sheetdb.io/api/v1/4dre2nqub01h2/id/${id}`, {
         method: 'DELETE',
         headers: {
           'Accept': 'application/json',
