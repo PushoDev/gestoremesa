@@ -12,29 +12,44 @@ import { eyeSharp, person, trash } from "ionicons/icons";
 import "./client-list.css";
 
 const ClientsList = () => {
+  // Interaccion con la APi Rest
+  const [clientes, setClientes] = useState([]);
 
-
+  useEffect(() => {
+    const obtenerClientes = async () => {
+      try {
+        const response = await fetch("https://sheetdb.io/api/v1/jom1wk8v9e84y");
+        const data = await response.json();
+        setClientes(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    obtenerClientes();
+  }, []);
+  // Vista para mostrar los clientes
   return (
-    <>
+    <>      
       <div className="ion-padding">
-        {/* Card para Mostrar Datos Ingresados a la API rest */}
+        {/* Card para Mostrar Detalles del Cliente */}
           <IonList
           className="animate__animated animate__fadeInUp bg-transparent"
           >
             {/* Detalles del Cliente */}
-            <IonItemSliding className="ocasiones bg-gradient-to-b from-gray-900 to-gray-600">
+          {clientes.map((cliente, index) => (
+            <IonItemSliding key={index} className="ocasiones bg-gradient-to-b from-gray-900 to-gray-600">
               <IonItem button={true} detail={true} detailIcon={person}>
                 <IonLabel>
                   <h2>
-                  <b className="text-blue-600">Cliente:</b> 
+                    <b className="text-blue-600">Cliente:</b>
                   </h2>
                   <p>
-                  <b className="text-green-500">Envió:</b> 
+                    <b className="text-green-500">Envió:</b>
                     | <b className="text-green-500">Telf: </b>
 
                   </p>
                   <p>
-                  <b className="text-red-600">Familiar:</b>
+                    <b className="text-red-600">Familiar:</b>
                   </p>
                 </IonLabel>
               </IonItem>
@@ -54,11 +69,9 @@ const ClientsList = () => {
                 </IonItemOption>
               </IonItemOptions>
             </IonItemSliding>
-          </IonList>
-
+          ))}
+        </IonList>
       </div>
-
-
     </>
   );
 };
