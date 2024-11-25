@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   IonIcon,
   IonItem,
@@ -25,20 +25,40 @@ const ClientsList = () => {
   const [clientes, setClientes] = useState([]);
   // Seleccionar Cliente
   const [clienteSeleccionado, setClienteSeleccionado] = useState({})
-
   useEffect(() => {
     const obtenerClientes = async () => {
       try {
         const response = await fetch("https://sheetdb.io/api/v1/jom1wk8v9e84y");
         const data = await response.json();
         setClientes(data);
+        console.log(data);        
       } catch (error) {
         console.error(error);
       }
     };
     obtenerClientes();
   }, []);
-  // Mostrar datos del cliente seleccionado
+  // Eliminar datos del cliente 
+  const eliminarCliente = async (id: number) => {
+    try {
+      const response = await fetch(`https://sheetdb.io/api/v1/jom1wk8v9e84y/id/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      if (error.status === 404) {
+        console.log('Error: El cliente no existe');
+      } else {
+        console.log('Error: Ocurrió un error al eliminar el cliente');
+      }
+    }
+  };
+
 
   // Vista para mostrar los clientes
   return (
@@ -48,8 +68,11 @@ const ClientsList = () => {
         <IonList
           className="animate__animated animate__fadeInUp bg-transparent"
         >
+
           {/* Detalles del Cliente */}
+
           {clientes.map((cliente, index) => (
+
             <IonItemSliding key={index} className="ocasiones bg-gradient-to-b from-gray-900 to-gray-600">
               <IonItem button={true} detail={true} detailIcon={person}>
                 <IonLabel>
@@ -66,6 +89,7 @@ const ClientsList = () => {
                   </p>
                 </IonLabel>
               </IonItem>
+
               {/* Ver Detalles */}
               <IonItemOptions side="start">
                 <IonItemOption color="primary"
@@ -80,13 +104,15 @@ const ClientsList = () => {
               </IonItemOptions>
               {/* Delete Cliente */}
               <IonItemOptions slot="end">
-                <IonItemOption color="danger" expandable={true}>
+                <IonItemOption color="danger" expandable={true} onClick={() => eliminarCliente(cliente.id)}>
                   <IonIcon slot="icon-only" icon={trash}></IonIcon>
                 </IonItemOption>
-              </IonItemOptions>
+              </IonItemOptions>            
             </IonItemSliding>
           ))}
+
         </IonList>
+
         {/* Modal */}
         <IonModal isOpen={isOpen}>
           <IonHeader>
@@ -102,7 +128,7 @@ const ClientsList = () => {
             <IonCard>
               <IonCardHeader>
                 <IonCardSubtitle>Cliente que Envía</IonCardSubtitle>
-              </IonCardHeader>              
+              </IonCardHeader>
               <IonCardContent>
                 <p><b>Nombre Cliente: </b> {clienteSeleccionado.name_client} </p><br />
                 <p><b>No Contacto: </b> {clienteSeleccionado.cell_client} </p><br />
@@ -115,7 +141,18 @@ const ClientsList = () => {
                 <p><b>Operación: </b> {clienteSeleccionado.transaccion} </p><br />
                 <p><b>Tipo de Moneda: </b> {clienteSeleccionado.moneda} </p><br />
                 {/* condicion */}
-                <p><b>No. Tarjeta: </b> {clienteSeleccionado.card} </p><br />
+                {clienteSeleccionado.card ? (
+                  <div>
+                    <p><b>No. Tarjeta: </b> {clienteSeleccionado.card} </p>
+                    <br />
+                  </div>
+                ) : null}
+
+
+                {/* { clienteSeleccionado.card && (
+                <p><b>No. Tarjeta: </b> {clienteSeleccionado.card} </p>
+                ) } */}
+                {/* <p><b>No. Tarjeta: </b> {clienteSeleccionado.card} </p><br /> */}
 
                 <p><b>Cantidad Recive: </b> {clienteSeleccionado.recive_familiar} </p><br />
                 <br /><hr /><br />
@@ -127,6 +164,7 @@ const ClientsList = () => {
           </IonContent>
         </IonModal>
       </div>
+      <br />
     </>
   );
 };
