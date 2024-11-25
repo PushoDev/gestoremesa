@@ -147,13 +147,6 @@ const ClientsList = () => {
                     <br />
                   </div>
                 ) : null}
-
-
-                {/* { clienteSeleccionado.card && (
-                <p><b>No. Tarjeta: </b> {clienteSeleccionado.card} </p>
-                ) } */}
-                {/* <p><b>No. Tarjeta: </b> {clienteSeleccionado.card} </p><br /> */}
-
                 <p><b>Cantidad Recive: </b> {clienteSeleccionado.recive_familiar} </p><br />
                 <br /><hr /><br />
                 <IonCardSubtitle>Datos del Mensajero</IonCardSubtitle><br /><br />
