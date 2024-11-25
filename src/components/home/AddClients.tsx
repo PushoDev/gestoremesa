@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  IonAlert,
   IonButton,
   IonCard,
   IonCardContent,
@@ -16,7 +17,7 @@ import {
   IonSelectOption,
   IonText
 } from "@ionic/react";
-import { warning } from "ionicons/icons";
+import { card, carSharp, cashSharp, person, phonePortrait, warning } from "ionicons/icons";
 
 const AddClients = () => {
   // Estado para almacenar los valores ingresados por el usuario
@@ -101,7 +102,7 @@ const AddClients = () => {
       <IonCard className="animate__animated animate__fadeInUp bg-gradient-to-r from-slate-900 to-slate-700">
         <IonCardHeader>
           <IonCardTitle>Agregar Operación</IonCardTitle>
-          <IonCardSubtitle>Cliente que Envía</IonCardSubtitle>
+          <IonCardSubtitle color={"success"}>Cliente que Envía</IonCardSubtitle>
         </IonCardHeader>
 
         <IonCardContent className="text-red-600">
@@ -112,41 +113,54 @@ const AddClients = () => {
               label="Nombre y Apellidos"
               labelPlacement="floating"
               placeholder="Credenciales de quien envía"
+              fill="solid"
               value={nombreEnvia}
-              onIonChange={(e) => setNombreEnvia(e.detail.value!)}
-            />
+              onIonChange={(e) => setNombreEnvia(e.detail.value!)}              
+            >
+              <IonIcon slot="start" color="success" icon={person} aria-hidden="true"></IonIcon>
+            </IonInput>
             <br />
             {/* Teléfono del cliente */}
             <IonInput
               label="Número de Teléfono"
               labelPlacement="floating"
               placeholder="Teléfono de quien envía"
+              fill="solid"
               value={telefonoEnvia}
               onIonChange={(e) => setTelefonoEnvia(e.detail.value!)}
-            />
+              type="number"
+            >
+              <IonIcon slot="start" color="success" icon={phonePortrait} aria-hidden="true"></IonIcon>
+            </IonInput>
             <br />
             {/* Cantidad que envía */}
             <IonInput
               label="Cantidad que Envía"
               labelPlacement="floating"
               placeholder="Cantidad que envía"
+              fill="solid"
               value={cantidadEnvia}
               onIonChange={(e) => setCantidadEnvia(e.detail.value!)}
-            />
+              type="number"
+            >
+              <IonIcon slot="start" color="success" icon={cashSharp} aria-hidden="true"></IonIcon>
+            </IonInput>
           </div>
           <br />
           <hr />
           <br />
 
           {/* Información del familiar del cliente */}
-          <IonCardSubtitle>Familiar que Recive</IonCardSubtitle>
+          <IonCardSubtitle color={"success"}>Familiar que Recive</IonCardSubtitle>
           {/* Número de teléfono del familiar para localizar */}
           <IonInput
             label="Número para Contactar"
             labelPlacement="floating"
             placeholder="Contacto de quien recibe"
+            fill="solid"
             value={telefonoFamiliar}
             onIonChange={(e) => setTelefonoFamiliar(e.detail.value!)}
+            type="number"
           />
           <br />
           {/* Nombre y apellidos de quien recibe */}
@@ -154,6 +168,7 @@ const AddClients = () => {
             label="Nombre y Apellidos del Familiar"
             labelPlacement="floating"
             placeholder="Credenciales de quien recibe"
+            fill="solid"
             value={nombreFamiliar}
             onIonChange={(e) => setNombreFamiliar(e.detail.value!)}
           />
@@ -163,6 +178,7 @@ const AddClients = () => {
             label="Dirección Particular"
             labelPlacement="floating"
             placeholder="Lugar donde vive el familiar o amigo"
+            fill="solid"
             value={direccionFamiliar}
             onIonChange={(e) => setDireccionFamiliar(e.detail.value!)}
           />
@@ -211,8 +227,10 @@ const AddClients = () => {
                       labelPlacement="floating"
                       label="Cantidad que Recive"
                       placeholder="Monto que Recive"
+                      fill="outline"
                       value={cantidadRecive}
                       onIonChange={(e) => setCantidadRecive(e.detail.value!)}
+                      type="number"
                     />
                   </IonCol>
                 </IonRow>
@@ -246,8 +264,10 @@ const AddClients = () => {
                       labelPlacement="floating"
                       label="Cantidad que Recive"
                       placeholder="Monto que Recive"
+                        fill="outline"
                       value={cantidadRecive}
                       onIonChange={(e) => setCantidadRecive(e.detail.value!)}
+                        type="number"
                       />
                   </IonCol>
                 </IonRow>
@@ -261,14 +281,18 @@ const AddClients = () => {
                       label="Número de Tarjeta"
                       color="success"
                       labelPlacement="floating"
-                      placeholder="ingrese Número de Tarjeta"
+                        placeholder="0000-0000-0000-0000"
                       value={formatTarjeta(tarjetaFamiliar)}
                       onIonInput={(e) =>
                         setTarjetaFamiliar(
                           formatTarjeta(e.target.value as string)
                         )
                       }
-                    />
+                        fill="outline"
+                        type="number"
+                      >
+                        <IonIcon slot="start" color="success" icon={card} aria-hidden="true"></IonIcon>
+                      </IonInput>
                     </IonCol>
                 </IonRow>
               </IonGrid>
@@ -280,7 +304,7 @@ const AddClients = () => {
           <br />
 
           {/* Información del mensajero que realiza la entrega */}
-          <IonCardSubtitle>Mensajero que Entrega</IonCardSubtitle>
+          <IonCardSubtitle color={"success"}>Mensajero que Entrega</IonCardSubtitle><br />
           {/* Número de teléfono del mensajero para localizar */}
           <IonInput
             labelPlacement="floating"
@@ -288,6 +312,8 @@ const AddClients = () => {
             placeholder="Teléfono del Mensajero a Localizar"
             value={telefonoMensajero}
             onIonChange={(e) => setTelefonoMensajero(e.detail.value!)}
+            type="number"
+            fill="outline"
           />
           <br />
           <IonInput
@@ -296,17 +322,28 @@ const AddClients = () => {
             placeholder="Mensajero que Entrega"
             value={nombreMensajero}
             onIonChange={(e) => setNombreMensajero(e.detail.value!)}
-          />
+            fill="solid"
+          >
+            <IonIcon slot="start" color="success" icon={carSharp} aria-hidden="true"></IonIcon>
+          </IonInput>
           <br />
         </IonCardContent>
 
         {/* Botones */}
-        <IonButton fill="clear" color={"success"} onClick={handleSubmit}>
+        <IonButton fill="clear" color={"success"} id="present-alert" onClick={handleSubmit}>
           Agregar
         </IonButton>
         <IonButton fill="clear" color={"danger"} onClick={resetForm}>
           Cancelar Operación
         </IonButton>
+        {/* Alert Confirmations */}
+        <IonAlert
+          trigger="present-alert"
+          header="Perfecto"
+          subHeader="Operación Realizada"
+          message="El Cliente ha sido agregado Satisfactoriamente."
+          buttons={["Aceptar"]}
+        ></IonAlert>
       </IonCard>
     </>
   );

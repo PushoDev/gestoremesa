@@ -119,13 +119,13 @@ const ClientsList = () => {
             <IonToolbar>
               <IonTitle>Detalles del Cliente</IonTitle>
               <IonButtons slot="end">
-                <IonButton onClick={() => setIsOpen(false)}>Aceptar</IonButton>
+                <IonButton color={"success"} onClick={() => setIsOpen(false)}>Aceptar</IonButton>
               </IonButtons>
             </IonToolbar>
           </IonHeader>
           <IonContent className="ion-padding">
             {/* Contenido */}
-            <IonCard>
+            <IonCard className="animate__animated animate__zoomIn">
               <IonCardHeader>
                 <IonCardSubtitle>Cliente que Envía</IonCardSubtitle>
               </IonCardHeader>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IonAlert, IonButtons, IonButton, IonModal, IonHeader, IonContent, IonToolbar, IonTitle, IonPage } from "@ionic/react";
+import { IonAlert, IonButtons, IonButton, IonModal, IonHeader, IonContent, IonToolbar, IonTitle, IonInput, IonItem, IonList, IonText } from "@ionic/react";
 
 
 import "./confg.css";
@@ -38,6 +38,16 @@ const ConfPage = () => {
           </p>
         </IonContent>
       </IonModal>
+
+      <IonList>
+        <IonItem>
+          <IonInput labelPlacement="floating" value="hi@ionic.io">
+            <div slot="label">
+              Email <IonText color="danger">(Required)</IonText>
+            </div>
+          </IonInput>
+        </IonItem>
+      </IonList>
     </>
   );
 };
