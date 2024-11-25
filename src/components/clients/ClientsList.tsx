@@ -13,7 +13,8 @@ import {
   IonTitle,
   IonButtons,
   IonButton,
-  IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle
+  IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle,
+  IonAlert
 } from "@ionic/react";
 import { eyeSharp, person, trash, warning } from "ionicons/icons";
 import "./client-list.css";
@@ -104,14 +105,25 @@ const ClientsList = () => {
               </IonItemOptions>
               {/* Delete Cliente */}
               <IonItemOptions slot="end">
-                <IonItemOption color="danger" expandable={true} onClick={() => eliminarCliente(cliente.id)}>
+                <IonItemOption color="danger" id="deleted-alert" expandable={true} onClick={() => eliminarCliente(cliente.id)}>
                   <IonIcon slot="icon-only" icon={trash}></IonIcon>
                 </IonItemOption>
               </IonItemOptions>            
             </IonItemSliding>
           ))}
 
+          {/* Alerta de Confirmación */}
+          <IonAlert
+            trigger="deleted-alert"
+            header="Perfecto"
+            subHeader="Operación Realizada"
+            message="El Cliente ha sido eliminado Satisfactoriamente."
+            buttons={["Aceptar"]}
+          ></IonAlert>
+
         </IonList>
+
+
 
         {/* Modal */}
         <IonModal isOpen={isOpen}>
