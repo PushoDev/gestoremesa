@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IonAlert, IonButtons, IonButton, IonModal, IonHeader, IonContent, IonToolbar, IonTitle, IonInput, IonItem, IonList, IonText } from "@ionic/react";
+import { } from "@ionic/react";
 
 
 import "./confg.css";
@@ -9,45 +9,13 @@ const ConfPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <IonButton id="present-alert">Aceptar</IonButton>
-      <IonAlert
-        trigger="present-alert"
-        header="Perfecto"
-        subHeader="Operación Realizada"
-        message="El Cliente ha sido agregado Satisfactoriamente."
-        buttons={["Action"]}
-      ></IonAlert>
-      {/* Acciones Modal */}
-      <IonButton expand="block" onClick={() => setIsOpen(true)}>
-        Open
-      </IonButton>
-      <IonModal isOpen={isOpen}>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Modal</IonTitle>
-            <IonButtons slot="end">
-              <IonButton onClick={() => setIsOpen(false)}>Close</IonButton>
-            </IonButtons>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent className="ion-padding">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
-            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui.
-            Eaque, dicta.
-          </p>
-        </IonContent>
-      </IonModal>
-
-      <IonList>
-        <IonItem>
-          <IonInput labelPlacement="floating" value="hi@ionic.io">
-            <div slot="label">
-              Email <IonText color="danger">(Required)</IonText>
-            </div>
-          </IonInput>
-        </IonItem>
-      </IonList>
+      <div className="ion-padding">
+        <h1>Configuraciones Generales</h1><br />
+        <h3>Versión: 1.0.0</h3><br />
+        <h2 className="text-3xl text-red-900">Colección de La GlorietaShop</h2><br /><hr /><br />
+        <h3>Created by: <b>PushoDev</b></h3><br />
+        <h3 className="text-red-700">https://pushodev.github.io</h3>
+      </div>
     </>
   );
 };
