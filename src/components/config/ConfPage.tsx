@@ -1,8 +1,12 @@
-import React from "react";
-import { IonAlert, IonButton } from "@ionic/react";
+import React, { useState } from "react";
+import { IonAlert, IonButtons, IonButton, IonModal, IonHeader, IonContent, IonToolbar, IonTitle, IonPage } from "@ionic/react";
+
+
 import "./confg.css";
 
 const ConfPage = () => {
+  // Modal
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <IonButton id="present-alert">Aceptar</IonButton>
@@ -13,6 +17,27 @@ const ConfPage = () => {
         message="El Cliente ha sido agregado Satisfactoriamente."
         buttons={["Action"]}
       ></IonAlert>
+      {/* Acciones Modal */}
+      <IonButton expand="block" onClick={() => setIsOpen(true)}>
+        Open
+      </IonButton>
+      <IonModal isOpen={isOpen}>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Modal</IonTitle>
+            <IonButtons slot="end">
+              <IonButton onClick={() => setIsOpen(false)}>Close</IonButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent className="ion-padding">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui.
+            Eaque, dicta.
+          </p>
+        </IonContent>
+      </IonModal>
     </>
   );
 };

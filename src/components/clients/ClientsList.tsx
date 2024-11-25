@@ -6,12 +6,21 @@ import {
   IonItemOption,
   IonItemSliding,
   IonLabel,
-  IonList
+  IonList,
+  IonModal,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonButtons,
+  IonButton,
+  IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle
 } from "@ionic/react";
-import { eyeSharp, person, trash } from "ionicons/icons";
+import { eyeSharp, person, trash, warning } from "ionicons/icons";
 import "./client-list.css";
 
 const ClientsList = () => {
+  // Interaccion con Modal - Read Clientes
+  const [isOpen, setIsOpen] = useState(false)
   // Interaccion con la APi Rest
   const [clientes, setClientes] = useState([]);
 
@@ -29,35 +38,34 @@ const ClientsList = () => {
   }, []);
   // Vista para mostrar los clientes
   return (
-    <>      
+    <>
       <div className="ion-padding">
         {/* Card para Mostrar Detalles del Cliente */}
-          <IonList
+        <IonList
           className="animate__animated animate__fadeInUp bg-transparent"
-          >
-            {/* Detalles del Cliente */}
+        >
+          {/* Detalles del Cliente */}
           {clientes.map((cliente, index) => (
             <IonItemSliding key={index} className="ocasiones bg-gradient-to-b from-gray-900 to-gray-600">
               <IonItem button={true} detail={true} detailIcon={person}>
                 <IonLabel>
                   <h2>
-                    <b className="text-blue-600">Cliente:</b>
+                    <b className="text-blue-600">Cliente: </b>{cliente.name_client}
                   </h2>
                   <p>
-                    <b className="text-green-500">Envió:</b>
-                    | <b className="text-green-500">Telf: </b>
+                    <b className="text-green-500">Envió:</b> {cliente.envia_client}
+                    <b className="text-green-500"> | Telf: </b> {cliente.cell_client}
 
                   </p>
                   <p>
-                    <b className="text-red-600">Familiar:</b>
+                    <b className="text-green-600">Familiar: </b>{cliente.name_familiar}
                   </p>
                 </IonLabel>
               </IonItem>
               {/* Ver Detalles */}
-              <IonItemOptions id="open-modal" side="start">
-                <IonItemOption
-                  id="open-modal"
-
+              <IonItemOptions side="start">
+                <IonItemOption color="primary"
+                  onClick={() => setIsOpen(true)}
                 >
                   <IonIcon slot="icon-only" icon={eyeSharp}></IonIcon>
                 </IonItemOption>
@@ -71,6 +79,28 @@ const ClientsList = () => {
             </IonItemSliding>
           ))}
         </IonList>
+        {/* Modal */}
+        <IonModal isOpen={isOpen}>
+          <IonHeader>
+            <IonToolbar>
+              <IonTitle>Detalles del Cliente</IonTitle>
+              <IonButtons slot="end">
+                <IonButton onClick={() => setIsOpen(false)}>Aceptar</IonButton>
+              </IonButtons>
+            </IonToolbar>
+          </IonHeader>
+          <IonContent className="ion-padding">
+            {/* Contenido */}
+            <IonCard>
+              <IonCardHeader>
+                <IonCardTitle>Card Title</IonCardTitle>
+                <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+              </IonCardHeader>
+
+              <IonCardContent>Here's a small text description for the card content. Nothing more, nothing less.</IonCardContent>
+            </IonCard>
+          </IonContent>
+        </IonModal>
       </div>
     </>
   );
